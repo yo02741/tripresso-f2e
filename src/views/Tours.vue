@@ -148,6 +148,9 @@ export default {
           this.sort = sort;
 
           $('html,body').animate({ scrollTop: 0 }, 'slow');
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
     resetRange() {
