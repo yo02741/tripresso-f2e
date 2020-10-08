@@ -12,7 +12,7 @@
       </ul>
       <p class="h6 text-accent">YU-JUNG, CHEN</p>
     </nav>
-    <!-- <button type="button" id="sidebarCollapse" class="btn btn-primary">≡</button> -->
+    <button type="button" id="sidebarCollapse" class="btn btn-primary">≡</button>
 
     <loading :active.sync="isLoading" loader="dots"></loading>
     <ul class="row flex-column flex-md-row justify-content-center align-items-center list-unstyled pl-0 pt-3">
