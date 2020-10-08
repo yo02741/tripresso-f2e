@@ -29,6 +29,7 @@ export default {
     return {
       range: [],
       rangeLimit: 5,
+      // 要呈現幾個數字
     };
   },
   props: ['pages'],
@@ -37,16 +38,20 @@ export default {
       this.$emit('changePage', page);
     },
     calcRange(clickPage) {
+      // 計算出 點擊頁面 應該產生的 range，並傳遞起始值跟結尾值
       if (clickPage <= Math.ceil(this.rangeLimit / 2)) {
         this.setRange(1, this.rangeLimit);
       } else if (clickPage > this.pages.totalPage - Math.ceil(this.rangeLimit / 2)) {
-        this.setRange(this.pages.totalPage - 4, this.pages.totalPage);
+        const vari = this.rangeLimit - 1;
+        this.setRange(this.pages.totalPage - vari, this.pages.totalPage);
       } else {
-        this.setRange(clickPage - 2, clickPage + 2);
+        const vari = Math.ceil(this.rangeLimit / 2) - 1;
+        this.setRange(clickPage - vari, clickPage + vari);
       }
       this.updatePage(clickPage);
     },
-    setRange(start = 1, end = 5) {
+    setRange(start = 1, end = this.rangeLimit) {
+      // 得到起始值跟結尾值時，依序加入range
       this.range = [];
       for (let i = start; i <= end; i += 1) {
         this.range.push(i);
