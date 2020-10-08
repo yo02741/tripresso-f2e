@@ -12,7 +12,7 @@
       </ul>
       <p class="h6 text-accent">YU-JUNG, CHEN</p>
     </nav>
-    <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">≡</button>
+    <button type="button" id="sidebarCollapse" class="btn btn-primary">≡</button>
 
     <loading :active.sync="isLoading" loader="dots"></loading>
     <ul class="row flex-column flex-md-row justify-content-center align-items-center list-unstyled pl-0 pt-3">
@@ -136,8 +136,6 @@ export default {
   methods: {
     getTours(page = 1, rowPerPage = 10, sort = 'rating_desc') {
       this.isLoading = true;
-      this.page.currentPage = 1;
-      this.sort = sort;
       this.$http.get(`${this.api.apiPath}?page=${page}&row_per_page=${rowPerPage}&sort=${sort}`)
         .then((res) => {
           this.isLoading = false;
@@ -147,8 +145,9 @@ export default {
           this.page.totalPage = Math.ceil(100 / this.page.rowPerPage);
 
           this.page.currentPage = page;
+          this.sort = sort;
+
           $('html,body').animate({ scrollTop: 0 }, 'slow');
-          console.log(this.tours);
         });
     },
     resetRange() {
