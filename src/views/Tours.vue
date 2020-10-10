@@ -59,7 +59,7 @@
             </ul>
           </div>
           <div class="card-footer d-flex flex-column flex-lg-row justify-content-between align-items-center px-5">
-            <VueSlickCarousel class="d-flex justify-content-between cardFooterSlick my-3" v-bind="slickSettings">
+            <VueSlickCarousel class="cardFooterSlick my-3" v-bind="slickSettings">
               <div v-for="group in item.group" :key="group.id">
                 <button type="button" class="btn btn-outline-primary d-flex flex-column mx-auto">
                   <strong class="group">{{ group.date | time }}</strong>
@@ -111,18 +111,28 @@ export default {
       slickSettings: {
         arrows: true,
         dots: false,
-        slidesPerRow: 2,
-        autoplay: true,
+        infinite: false,
+        centerMode: true,
+        slidesToScroll: 1,
         responsive: [
+          {
+            breakpoint: 1200,
+            settings: {
+              centerMode: false,
+              slidesPerRow: 2,
+            },
+          },
           {
             breakpoint: 992,
             settings: {
+              centerMode: false,
               slidesPerRow: 3,
             },
           },
           {
             breakpoint: 450,
             settings: {
+              centerMode: false,
               slidesPerRow: 2,
             },
           },
